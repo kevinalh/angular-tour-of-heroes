@@ -8,32 +8,92 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var Hero = (function () {
-    function Hero() {
-    }
-    return Hero;
-}());
+const core_1 = require('@angular/core');
+class Hero {
+}
 exports.Hero = Hero;
-var AppComponent = (function () {
-    function AppComponent() {
+let AppComponent = class AppComponent {
+    constructor() {
         this.title = 'Tour of Heroes';
-        this.hero = {
-            id: 1,
-            name: 'Windstorm'
-        };
+        this.heroes = HEROES;
     }
-    AppComponent = __decorate([
-        core_1.Component({
-            selector: 'my-app',
-            template: "<h1>{{title}}</h1>\n    <h2>{{hero.name}} details!</h2>\n    <div><label>id: </label>{{hero.id}}</div>\n    <div>\n        <label>name: </label>\n        <input [(ngModel)]=\"hero.name\" placeholder=\"name\">\n    </div>"
-        }), 
-        __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
-}());
+    onSelect(hero) {
+        this.selectedHero = hero;
+    }
+};
+AppComponent = __decorate([
+    core_1.Component({
+        selector: 'my-app',
+        template: `<h1>{{title}}</h1>
+    <h2>My Heroes</h2>
+    <ul class="heroes">
+        <li *ngFor="let hero of heroes" (click)="onSelect(hero)">
+            <span class="badge">{{hero.id}}</span>
+            {{hero.name}}
+        </li>
+    </ul>
+    <div *ngIf="selectedHero">
+        <h2>{{selectedHero.name}} details!</h2>
+        <div><label>id: </label>{{selectedHero.id}}</div>
+        <div>
+            <label>name: </label>
+            <input [(ngModel)]="selectedHero.name" placeholder="name">
+        </div>
+    </div>`,
+        styles: [`
+      .selected {
+        background-color: #CFD8DC !important;
+        color: white;
+      }
+      .heroes {
+        margin: 0 0 2em 0;
+        list-style-type: none;
+        padding: 0;
+        width: 15em;
+      }
+      .heroes li {
+        cursor: pointer;
+        position: relative;
+        left: 0;
+        background-color: #EEE;
+        margin: .5em;
+        padding: .3em 0;
+        height: 1.6em;
+        border-radius: 4px;
+      }
+      .heroes li.selected:hover {
+        background-color: #BBD8DC !important;
+        color: white;
+      }
+      .heroes li:hover {
+        color: #607D8B;
+        background-color: #DDD;
+        left: .1em;
+      }
+      .heroes .text {
+        position: relative;
+        top: -3px;
+      }
+      .heroes .badge {
+        display: inline-block;
+        font-size: small;
+        color: white;
+        padding: 0.8em 0.7em 0 0.7em;
+        background-color: #607D8B;
+        line-height: 1em;
+        position: relative;
+        left: -1px;
+        top: -4px;
+        height: 1.8em;
+        margin-right: .8em;
+        border-radius: 4px 0 0 4px;
+      }
+    `]
+    }), 
+    __metadata('design:paramtypes', [])
+], AppComponent);
 exports.AppComponent = AppComponent;
-var HEROES = [
+const HEROES = [
     { id: 11, name: 'Mr. Nice' },
     { id: 12, name: 'Narco' },
     { id: 13, name: 'Bombasto' },
