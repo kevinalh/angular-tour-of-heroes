@@ -9,19 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 const core_1 = require('@angular/core');
-const platform_browser_1 = require('@angular/platform-browser');
-const forms_1 = require('@angular/forms');
-const app_component_1 = require('./app.component');
-const hero_detail_component_1 = require('./hero-detail.component');
-let AppModule = class AppModule {
+const hero_1 = require('./hero');
+let HeroDetailComponent = class HeroDetailComponent {
 };
-AppModule = __decorate([
-    core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, forms_1.FormsModule],
-        declarations: [app_component_1.AppComponent, hero_detail_component_1.HeroDetailComponent],
-        bootstrap: [app_component_1.AppComponent]
+__decorate([
+    core_1.Input(), 
+    __metadata('design:type', hero_1.Hero)
+], HeroDetailComponent.prototype, "hero", void 0);
+HeroDetailComponent = __decorate([
+    core_1.Component({
+        selector: 'my-hero-detail',
+        template: `
+        <div *ngIf="hero">
+        <h2>{{hero.name}} details!</h2>
+        <div><label>id: </label>{{hero.id}}</div>
+        <div>
+          <label>name: </label>
+          <input [(ngModel)]="hero.name" placeholder="name"/>
+        </div>
+        </div>
+    `
     }), 
     __metadata('design:paramtypes', [])
-], AppModule);
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+], HeroDetailComponent);
+exports.HeroDetailComponent = HeroDetailComponent;
+//# sourceMappingURL=hero-detail.component.js.map

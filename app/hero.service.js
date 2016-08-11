@@ -9,19 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 const core_1 = require('@angular/core');
-const platform_browser_1 = require('@angular/platform-browser');
-const forms_1 = require('@angular/forms');
-const app_component_1 = require('./app.component');
-const hero_detail_component_1 = require('./hero-detail.component');
-let AppModule = class AppModule {
+const mock_heroes_1 = require('./mock-heroes');
+let HeroService = class HeroService {
+    getHeroes() {
+        return Promise.resolve(mock_heroes_1.HEROES);
+    }
+    getHeroesSlowly() {
+        return new Promise(resolve => setTimeout(() => resolve(mock_heroes_1.HEROES), 2000));
+        // 2 seconds
+    }
 };
-AppModule = __decorate([
-    core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, forms_1.FormsModule],
-        declarations: [app_component_1.AppComponent, hero_detail_component_1.HeroDetailComponent],
-        bootstrap: [app_component_1.AppComponent]
-    }), 
+HeroService = __decorate([
+    core_1.Injectable(), 
     __metadata('design:paramtypes', [])
-], AppModule);
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+], HeroService);
+exports.HeroService = HeroService;
+//# sourceMappingURL=hero.service.js.map

@@ -9,13 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 const core_1 = require('@angular/core');
-class Hero {
-}
-exports.Hero = Hero;
+const hero_service_1 = require('./hero.service');
 let AppComponent = class AppComponent {
-    constructor() {
+    constructor(heroService) {
+        this.heroService = heroService;
         this.title = 'Tour of Heroes';
-        this.heroes = HEROES;
+    }
+    ngOnInit() {
+        this.getHeroes();
+    }
+    getHeroes() {
+        this.heroService.getHeroes().then(heroes => this.heroes = heroes);
     }
     onSelect(hero) {
         this.selectedHero = hero;
@@ -27,19 +31,13 @@ AppComponent = __decorate([
         template: `<h1>{{title}}</h1>
     <h2>My Heroes</h2>
     <ul class="heroes">
-        <li *ngFor="let hero of heroes" (click)="onSelect(hero)">
+        <li *ngFor="let hero of heroes" (click)="onSelect(hero)" [class.selected]="hero === selectedHero">
             <span class="badge">{{hero.id}}</span>
             {{hero.name}}
         </li>
     </ul>
-    <div *ngIf="selectedHero">
-        <h2>{{selectedHero.name}} details!</h2>
-        <div><label>id: </label>{{selectedHero.id}}</div>
-        <div>
-            <label>name: </label>
-            <input [(ngModel)]="selectedHero.name" placeholder="name">
-        </div>
-    </div>`,
+    <my-hero-detail [hero]="selectedHero"></my-hero-detail>
+    `,
         styles: [`
       .selected {
         background-color: #CFD8DC !important;
@@ -88,21 +86,10 @@ AppComponent = __decorate([
         margin-right: .8em;
         border-radius: 4px 0 0 4px;
       }
-    `]
+    `],
+        providers: [hero_service_1.HeroService],
     }), 
-    __metadata('design:paramtypes', [])
+    __metadata('design:paramtypes', [hero_service_1.HeroService])
 ], AppComponent);
 exports.AppComponent = AppComponent;
-const HEROES = [
-    { id: 11, name: 'Mr. Nice' },
-    { id: 12, name: 'Narco' },
-    { id: 13, name: 'Bombasto' },
-    { id: 14, name: 'Celeritas' },
-    { id: 15, name: 'Magneta' },
-    { id: 16, name: 'RubberMan' },
-    { id: 17, name: 'Dynama' },
-    { id: 18, name: 'Dr IQ' },
-    { id: 19, name: 'Magma' },
-    { id: 20, name: 'Tornado' }
-];
 //# sourceMappingURL=app.component.js.map
