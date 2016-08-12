@@ -16,7 +16,7 @@ import { HeroService } from './hero.service';
     declarations:   [ AppComponent,
                       HeroesComponent,
                       DashboardComponent,
-                      HeroDetailComponent,],
+                      HeroDetailComponent],
     providers:  [ HeroService ],
     bootstrap:  [ AppComponent ]
 })

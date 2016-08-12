@@ -3,3 +3,5 @@ typings/
 npm-debug.log
 testem.log
 *.swp
+app/*.js
+app/*.js.map
