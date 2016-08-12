@@ -9,24 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 const core_1 = require('@angular/core');
-let AppComponent = class AppComponent {
-    constructor() {
-        this.title = 'Tour of Heroes';
+const hero_service_1 = require('./hero.service');
+let DashboardComponent = class DashboardComponent {
+    constructor(heroService) {
+        this.heroService = heroService;
+        this.heroes = [];
+    }
+    ngOnInit() {
+        this.heroService.getHeroes().then(heroes => this.heroes = heroes.slice(1, 5));
+    }
+    gotoDetail() {
     }
 };
-AppComponent = __decorate([
+DashboardComponent = __decorate([
     core_1.Component({
-        selector: 'my-app',
-        template: `
-        <h1>{{title}}</h1>
-        <nav>
-            <a routerLink="/dashboard">Dashboard</a>
-            <a routerLink="/heroes">Heroes</a>
-        </nav>
-        <router-outlet></router-outlet>
-    `
+        selector: 'my-dashboard',
+        templateUrl: 'app/dashboard.component.html'
     }), 
-    __metadata('design:paramtypes', [])
-], AppComponent);
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+    __metadata('design:paramtypes', [hero_service_1.HeroService])
+], DashboardComponent);
+exports.DashboardComponent = DashboardComponent;
+//# sourceMappingURL=dashboard.component.js.map
