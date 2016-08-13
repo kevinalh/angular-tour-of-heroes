@@ -2,6 +2,8 @@
 
 Application made following the [Tour of Heroes tutorial](https://angular.io/docs/ts/latest/tutorial/) from the official website.
 
+![Demo gif](demo.gif)
+
 ## How to install
 - Make sure you have [Node.js and npm installed](https://nodejs.org/en/download/current/).
 - Clone this repo in some directory: `git clone https://github.com/kevinalh/angular-tour-of-heroes.git`. Fork and clone if you want to make changes.
